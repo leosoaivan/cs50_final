@@ -3,10 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router";
 import { auth, db, logout } from "./firebase";
 
-const initialFormState = {
-  name: '',
-}
-
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
