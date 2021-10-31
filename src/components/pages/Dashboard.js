@@ -11,8 +11,11 @@ function Dashboard() {
 
   useEffect(() => {
     if (loading) return;
-    if (!user) return history.replace("/");
-    fetchUserName();
+    if (!user) {
+      history.replace("/");
+    } else {
+      fetchUserName();
+    }
   }, [user, loading, history]);
 
   const fetchUserName = async () => {
