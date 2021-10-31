@@ -3,9 +3,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useHistory } from "react-router-dom";
 import {
   auth,
-  registerWithEmailAndPassword,
+  createUserWithEmail,
   signInWithGoogle,
-} from "./firebase";
+} from "../../util/firebase";
 
 const initialFormState = {
   email: '',
@@ -27,7 +27,7 @@ function Register() {
     event.preventDefault();
     const { name, email, password } = formInputs;
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password);
+    createUserWithEmail(name, email, password);
   };
 
   function handleInputChange(event) {
@@ -43,12 +43,14 @@ function Register() {
         <input
           type="text"
           className="register__textBox"
+          name="name"
           value={formInputs.name}
           onChange={handleInputChange}
           placeholder="Full Name"
         />
         <input
           type="text"
+          name="email"
           className="register__textBox"
           value={formInputs.email}
           onChange={handleInputChange}
@@ -56,6 +58,7 @@ function Register() {
         />
         <input
           type="password"
+          name="password"
           className="register__textBox"
           value={formInputs.password}
           onChange={handleInputChange}
