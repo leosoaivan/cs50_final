@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
-import { auth, signInWithEmail, signInWithGoogle } from "../../util/firebase";
+import { auth, signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const initialFormState = {

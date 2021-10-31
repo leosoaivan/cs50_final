@@ -5,7 +5,7 @@ import {
   auth,
   createUserWithEmail,
   signInWithGoogle,
-} from "../../util/firebase";
+} from "../../util/firebaseAuth";
 
 const initialFormState = {
   email: '',
@@ -23,11 +23,11 @@ function Register() {
     if (user) history.replace("/dashboard");
   }, [user, loading, history]);
 
-  const register = (event) => {
+  const register = async (event) => {
     event.preventDefault();
     const { name, email, password } = formInputs;
     if (!name) alert("Please enter name");
-    createUserWithEmail(name, email, password);
+    await createUserWithEmail(name, email, password);
   };
 
   function handleInputChange(event) {
