@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router";
 import { auth, db } from "../../util/firebase";
+import { getFirestore, collection, getDocs, doc, addDoc, query, where } from "firebase/firestore";
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
@@ -16,11 +17,12 @@ function Dashboard() {
 
   const fetchUserName = async () => {
     try {
-      const query = await db
-        .collection("users")
-        .where("uid", "==", user?.uid)
-        .get();
-      const data = await query.docs[0].data();
+      // const query = await db
+      //   .collection("users")
+      //   .where("uid", "==", user?.uid)
+      //   .get();
+      const q = query(collection(db, 'users'), where('uid', '==', user?.uid))
+      const data = await getDocs(q)
       setName(data.name);
     } catch (err) {
       console.error(err);
@@ -29,7 +31,7 @@ function Dashboard() {
   };
 
   const handleLogout = () => {
-    auth.logout();
+    auth.signOut();
   }
 
   return (
