@@ -61,7 +61,10 @@ function Register() {
           onChange={handleInputChange}
           placeholder="Password"
         />
-        <button className="register__btn">
+        <button
+          className="register__btn"
+          type="submit"
+        >
           Register
         </button>
         <button
