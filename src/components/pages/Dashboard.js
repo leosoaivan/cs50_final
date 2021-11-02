@@ -6,7 +6,7 @@ import { getUserProfile } from '../../util/firebaseFirestore';
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
-  const [name, setName] = useState("");
+  const [profile, setProfile] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -20,8 +20,8 @@ function Dashboard() {
 
   const fetchUserName = async () => {
     try {
-      const profile = await getUserProfile(user)
-      setName(profile.name)
+      const data = await getUserProfile(user)
+      setProfile(data)
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -36,8 +36,8 @@ function Dashboard() {
     <div className="dashboard">
       <div className="dashboard__container">
         Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
+        <div>{profile?.name}</div>
+        <div>{profile?.email}</div>
         <button className="dashboard__btn" onClick={handleLogout}>
           Logout
         </button>
