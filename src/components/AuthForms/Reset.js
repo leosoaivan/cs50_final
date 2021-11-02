@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { sendPasswordResetEmail } from "../../util/firebaseAuth";
+import { Link, useHistory } from "react-router-dom";
+import { sendPasswordReset } from "../../util/firebaseAuth";
 
 const initialFormState = {
   email: '',
@@ -8,6 +8,7 @@ const initialFormState = {
 
 function Reset() {
   const [ formInputs, setFormInputs ] = useState(initialFormState);
+  const history = useHistory();
 
   function handleInputChange(event) {
     const target = event.target;
@@ -18,7 +19,8 @@ function Reset() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    sendPasswordResetEmail(formInputs.email)
+    sendPasswordReset(formInputs.email)
+      .then(() => history.replace('/'))
   }
 
   return (
@@ -26,6 +28,7 @@ function Reset() {
       <input
         type="text"
         className="reset__textBox"
+        name="email"
         value={formInputs.email}
         onChange={handleInputChange}
         placeholder="E-mail Address"

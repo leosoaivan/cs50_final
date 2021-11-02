@@ -35,10 +35,18 @@ const createUserWithEmail = async (name, email, password) => {
   }
 }
 
+const sendPasswordReset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export {
   auth,
   signInWithGoogle,
   signInWithEmail,
   createUserWithEmail,
-  sendPasswordResetEmail,
+  sendPasswordReset,
 };
