@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useHistory } from "react-router";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, sendPasswordResetEmail } from "../../util/firebaseAuth";
+import { sendPasswordResetEmail } from "../../util/firebaseAuth";
 
 const initialFormState = {
   email: '',
@@ -10,13 +8,6 @@ const initialFormState = {
 
 function Reset() {
   const [ formInputs, setFormInputs ] = useState(initialFormState);
-  const [user, loading] = useAuthState(auth);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (loading) return;
-    if (user) history.replace("/dashboard");
-  }, [user, loading, history]);
 
   function handleInputChange(event) {
     const target = event.target;

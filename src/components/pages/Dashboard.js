@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useCallback, useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
+import UserContext from '../../context/UserContext';
 import { auth } from "../../util/firebaseAuth";
 import { getUserProfile } from '../../util/firebaseFirestore';
 
 function Dashboard() {
-  const [user, loading] = useAuthState(auth);
-  const [profile, setProfile] = useState({});
+  const user = useContext(UserContext)
+  const [profile, setProfile] = useState(undefined);
   const history = useHistory();
 
-  useEffect(() => {
-    if (loading) return;
-    if (!user) {
-      history.replace("/");
-    } else {
-      fetchUserName();
-    }
-  }, [user, loading, history]);
-
-  const fetchUserName = async () => {
+  const memoizedFetchUserProfile = useCallback(async () => {
     try {
       const data = await getUserProfile(user)
       setProfile(data)
@@ -26,10 +17,17 @@ function Dashboard() {
       console.error(err);
       alert("An error occured while fetching user data");
     }
-  };
+  }, [user])
+
+  useEffect(() => {
+    if (user && !profile) {
+      memoizedFetchUserProfile()
+    }
+  }, [user, profile, memoizedFetchUserProfile]);
 
   const handleLogout = () => {
-    auth.signOut();
+    auth.signOut()
+      .then(() => history.replace("/"))
   }
 
   return (

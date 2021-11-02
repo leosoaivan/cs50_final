@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  auth,
   createUserWithEmail,
   signInWithGoogle,
 } from "../../util/firebaseAuth";
@@ -15,13 +13,6 @@ const initialFormState = {
 
 function Register() {
   const [ formInputs, setFormInputs ] = useState(initialFormState);
-  const [user, loading] = useAuthState(auth);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (loading) return;
-    if (user) history.replace("/dashboard");
-  }, [user, loading, history]);
 
   const register = async (event) => {
     event.preventDefault();
