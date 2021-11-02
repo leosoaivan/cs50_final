@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./util/firebaseAuth";
+import UserContext from './context/UserContext';
+import Login from './components/authForms/Login'
+import Register from './components/authForms/Register'
+import Reset from './components/authForms/Reset'
+import Dashboard from './components/pages/Dashboard'
 
 function App() {
+  const [user] = useAuthState(auth);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (user && history) {
+      history.replace("/dashboard");
+    }
+  }, [user, history]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          { user ? (
+            <UserContext.Provider value={user}>
+              <Route exact path="/" component={Dashboard} />
+            </UserContext.Provider>
+          ) : (
+            <React.Fragment>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/reset" component={Reset} />
+            </React.Fragment>
+          )}
+        </Switch>
+      </Router>
     </div>
   );
 }
