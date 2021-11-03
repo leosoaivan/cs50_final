@@ -45,6 +45,7 @@ function Login() {
       </button>
       <button
         onClick={signInWithGoogle}
+        type="button"
       >
         Login with Google
       </button>
