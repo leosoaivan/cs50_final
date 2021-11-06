@@ -1,6 +1,33 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import {
+  Anchor,
+  Button,
+  Fieldset,
+  TextField,
+} from 'react95';
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
+
+const Form = styled.form`
+  .password-fieldset {
+    margin-top: 24px;
+  }
+
+  .button-row {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  button:nth-of-type(2) {
+    margin-top: 12px;
+  }
+
+  .form-links {
+    margin-top: 24px;
+  }
+`;
 
 const initialFormState = {
   email: '',
@@ -23,39 +50,48 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <label for="email">Email:</label>
-      <input
-        type="text"
-        name="email"
-        value={formInputs.email}
-        onChange={handleInputChange}
-      />
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        value={formInputs.password}
-        onChange={handleInputChange}
-      />
-      <button
-        type="submit"
-      >
-        Login
-      </button>
-      <button
-        onClick={signInWithGoogle}
-        type="button"
-      >
-        Login with Google
-      </button>
-      <div>
-        <Link to="/reset">Forgot Password</Link>
+    <Form onSubmit={handleOnSubmit}>
+      <Fieldset label="Email">
+        <TextField
+          type="text"
+          name="email"
+          value={formInputs.email}
+          onChange={handleInputChange}
+        />
+      </Fieldset>
+      <Fieldset className="password-fieldset" label="Password">
+        <TextField
+          type="password"
+          name="password"
+          value={formInputs.password}
+          onChange={handleInputChange}
+        />
+      </Fieldset>
+      <div className="button-row">
+        <Button
+          type="submit"
+        >
+          Login
+        </Button>
+        <Button
+          onClick={signInWithGoogle}
+          type="button"
+        >
+          Google
+        </Button>
       </div>
-      <div>
-        Don't have an account? <Link to="/register">Register</Link> now.
+      <div className="form-links">
+        <Anchor>
+          <Link to="/reset">Forgot Password</Link>
+        </Anchor>
+        <div>
+          Don't have an account?&nbsp;
+          <Anchor>
+            <Link to="/register">Register now</Link>
+          </Anchor>
+        </div>
       </div>
-    </form>
+    </Form>
   )
 }
 
