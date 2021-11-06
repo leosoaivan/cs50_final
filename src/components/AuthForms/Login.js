@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
 import {
   Anchor,
   Button,
   Fieldset,
   TextField,
 } from 'react95';
+
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
 
 const Form = styled.form`
-  .password-fieldset {
-    margin-top: 24px;
+  fieldset {
+    margin-bottom: 24px;
   }
 
   .button-row {
-    margin-top: 24px;
+    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
   }
 
   button:nth-of-type(2) {
     margin-top: 12px;
-  }
-
-  .form-links {
-    margin-top: 24px;
   }
 `;
 
@@ -77,10 +74,10 @@ function Login() {
           onClick={signInWithGoogle}
           type="button"
         >
-          Google
+          Login with Google
         </Button>
       </div>
-      <div className="form-links">
+      <div>
         <Anchor>
           <Link to="/reset">Forgot Password</Link>
         </Anchor>
