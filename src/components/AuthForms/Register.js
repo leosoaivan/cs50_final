@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
 import {
   Anchor,
   Button,
@@ -12,22 +11,7 @@ import {
   createUserWithEmail,
   signInWithGoogle,
 } from "../../util/firebaseAuth";
-
-const Form = styled.form`
-  fieldset {
-    margin-bottom: 24px;
-  }
-
-  .button-row {
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  button:nth-of-type(2) {
-    margin-top: 12px;
-  }
-`
+import '../../styles/authforms.css';
 
 const initialFormState = {
   email: '',
@@ -53,7 +37,7 @@ function Register() {
   }
 
   return (
-    <Form onSubmit={register}>
+    <form onSubmit={register}>
       <div className="register__container">
         <Fieldset label="Name">
           <TextField
@@ -100,7 +84,7 @@ function Register() {
           </Anchor>
         </div>
       </div>
-    </Form>
+    </form>
   );
 }
 export default Register;

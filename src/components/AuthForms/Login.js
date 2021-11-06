@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
 import {
   Anchor,
   Button,
@@ -9,22 +8,7 @@ import {
 } from 'react95';
 
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
-
-const Form = styled.form`
-  fieldset {
-    margin-bottom: 24px;
-  }
-
-  .button-row {
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  button:nth-of-type(2) {
-    margin-top: 12px;
-  }
-`;
+import '../../styles/authforms.css';
 
 const initialFormState = {
   email: '',
@@ -47,7 +31,7 @@ function Login() {
   }
 
   return (
-    <Form onSubmit={handleOnSubmit}>
+    <form onSubmit={handleOnSubmit}>
       <Fieldset label="Email">
         <TextField
           type="text"
@@ -88,7 +72,7 @@ function Login() {
           </Anchor>
         </div>
       </div>
-    </Form>
+    </form>
   )
 }
 
