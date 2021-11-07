@@ -49,7 +49,7 @@ function Reset() {
       </div>
       <div>
         Don't have an account?&nbsp;
-        <Link to="/register">Register now</Link>.
+        <Link to="/register">Register now</Link>
       </div>
     </form>
   );
