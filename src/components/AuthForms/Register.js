@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Anchor,
   Button,
   Fieldset,
   TextField,
@@ -77,11 +76,7 @@ function Register() {
         </div>
         <div>
           Already have an account?&nbsp;
-          <Anchor>
-            <Link to="/">
-              Login now.
-            </Link>
-          </Anchor>
+          <Link to="/">Login now.</Link>
         </div>
       </div>
     </form>
