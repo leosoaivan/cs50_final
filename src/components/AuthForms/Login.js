@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import {
+  Button,
+  Fieldset,
+  TextField,
+} from 'react95';
+
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
+import '../../styles/authforms.css';
 
 const initialFormState = {
   email: '',
@@ -24,36 +31,41 @@ function Login() {
 
   return (
     <form onSubmit={handleOnSubmit}>
-      <label for="email">Email:</label>
-      <input
-        type="text"
-        name="email"
-        value={formInputs.email}
-        onChange={handleInputChange}
-      />
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        value={formInputs.password}
-        onChange={handleInputChange}
-      />
-      <button
-        type="submit"
-      >
-        Login
-      </button>
-      <button
-        onClick={signInWithGoogle}
-        type="button"
-      >
-        Login with Google
-      </button>
-      <div>
-        <Link to="/reset">Forgot Password</Link>
+      <Fieldset label="Email">
+        <TextField
+          type="text"
+          name="email"
+          value={formInputs.email}
+          onChange={handleInputChange}
+        />
+      </Fieldset>
+      <Fieldset className="password-fieldset" label="Password">
+        <TextField
+          type="password"
+          name="password"
+          value={formInputs.password}
+          onChange={handleInputChange}
+        />
+      </Fieldset>
+      <div className="button-row">
+        <Button
+          type="submit"
+        >
+          Login
+        </Button>
+        <Button
+          onClick={signInWithGoogle}
+          type="button"
+        >
+          Login with Google
+        </Button>
       </div>
       <div>
-        Don't have an account? <Link to="/register">Register</Link> now.
+        <Link to="/reset">Forgot Password</Link>
+        <div>
+          Don't have an account?&nbsp;
+          <Link to="/register">Register now</Link>
+        </div>
       </div>
     </form>
   )

@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import {
+  Button,
+  Fieldset,
+  TextField,
+} from 'react95';
+
 import { sendPasswordReset } from "../../util/firebaseAuth";
+import '../../styles/authforms.css';
 
 const initialFormState = {
   email: '',
@@ -25,22 +32,24 @@ function Reset() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="reset__textBox"
-        name="email"
-        value={formInputs.email}
-        onChange={handleInputChange}
-        placeholder="E-mail Address"
-      />
-      <button
-        className="reset__btn"
-        type="submit"
-      >
-        Send password reset email
-      </button>
+      <Fieldset label="Email">
+        <TextField
+          type="text"
+          name="email"
+          value={formInputs.email}
+          onChange={handleInputChange}
+        />
+      </Fieldset>
+      <div className="button-row">
+        <Button
+          type="submit"
+        >
+          Send password reset email
+        </Button>
+      </div>
       <div>
-        Don't have an account? <Link to="/register">Register</Link> now.
+        Don't have an account?&nbsp;
+        <Link to="/register">Register now</Link>
       </div>
     </form>
   );
