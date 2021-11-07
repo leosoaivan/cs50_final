@@ -10,7 +10,7 @@ import {
   createUserWithEmail,
   signInWithGoogle,
 } from "../../util/firebaseAuth";
-import '../../styles/authforms.css';
+import Form from '../../styles/Form';
 
 const initialFormState = {
   email: '',
@@ -36,7 +36,7 @@ function Register() {
   }
 
   return (
-    <form onSubmit={register}>
+    <Form onSubmit={register}>
       <div className="register__container">
         <Fieldset label="Name">
           <TextField
@@ -79,7 +79,7 @@ function Register() {
           <Link to="/">Login now</Link>
         </div>
       </div>
-    </form>
+    </Form>
   );
 }
 export default Register;

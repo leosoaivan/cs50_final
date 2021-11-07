@@ -7,7 +7,7 @@ import {
 } from 'react95';
 
 import { sendPasswordReset } from "../../util/firebaseAuth";
-import '../../styles/authforms.css';
+import Form from '../../styles/Form';
 
 const initialFormState = {
   email: '',
@@ -31,7 +31,7 @@ function Reset() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Fieldset label="Email">
         <TextField
           type="text"
@@ -51,7 +51,7 @@ function Reset() {
         Don't have an account?&nbsp;
         <Link to="/register">Register now</Link>
       </div>
-    </form>
+    </Form>
   );
 }
 export default Reset;

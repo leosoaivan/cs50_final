@@ -7,7 +7,7 @@ import {
 } from 'react95';
 
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
-import '../../styles/authforms.css';
+import Form from '../../styles/Form'
 
 const initialFormState = {
   email: '',
@@ -30,7 +30,7 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
+    <Form onSubmit={handleOnSubmit}>
       <Fieldset label="Email">
         <TextField
           type="text"
@@ -67,7 +67,7 @@ function Login() {
           <Link to="/register">Register now</Link>
         </div>
       </div>
-    </form>
+    </Form>
   )
 }
 
