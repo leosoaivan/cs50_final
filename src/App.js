@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import GlobalStyles from './styles/globalStyles';
 import { ThemeProvider } from 'styled-components';
 import original from "react95/dist/themes/original";
@@ -8,6 +9,12 @@ import { auth } from "./util/firebaseAuth";
 import UserContext from './context/UserContext';
 import UnauthenticatedApp from './components/pages/UnauthenticatedApp';
 import Dashboard from './components/pages/Dashboard';
+
+const AppRoot = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+`
 
 function App() {
   const [user] = useAuthState(auth);
@@ -20,7 +27,7 @@ function App() {
   }, [user, history]);
 
   return (
-    <div>
+    <AppRoot>
       <GlobalStyles />
       <ThemeProvider theme={original}>
         <Router>
@@ -35,7 +42,7 @@ function App() {
           </Switch>
         </Router>
       </ThemeProvider>
-    </div>
+    </AppRoot>
   );
 }
 

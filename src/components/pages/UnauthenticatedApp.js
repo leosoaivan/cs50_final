@@ -11,10 +11,6 @@ import Register from '../authForms/Register';
 import Reset from '../authForms/Reset'
 
 const Root = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-
   .window {
     display: block;
   }
