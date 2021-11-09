@@ -7,7 +7,7 @@ export const createUserProfile = async (user) => {
   const userQuery = query(collection(db, 'users'), where('uid', '==', user.uid))
   const querySnapshot = await getDocs(userQuery);
 
-  if (!querySnapshot.length) {
+  if (!querySnapshot.docs.length) {
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
       name: user.name || user.displayName,
@@ -26,4 +26,19 @@ export const getUserProfile = async (user) => {
   const querySnapshot = await getDocs(q)
 
   return querySnapshot.docs[0]?.data();
+}
+
+export const createQuestion = async (opts) => {
+  const { user, question, answer } = opts
+
+  if (!user || !question || !answer) {
+    throw new Error('Invalid question/answer')
+  }
+
+  await addDoc(collection(db, 'questions'), {
+    question: question,
+    answer: answer,
+    uid: user.uid,
+    datetime: new Date(),
+  })
 }

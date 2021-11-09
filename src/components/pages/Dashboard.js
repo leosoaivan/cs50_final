@@ -15,6 +15,7 @@ import {
 import UserContext from '../../context/UserContext';
 import { auth } from "../../util/firebaseAuth";
 import { getUserProfile } from '../../util/firebaseFirestore';
+import MagicBall from '../MagicBall';
 
 const Root = styled.div`
   #toolbar button:nth-of-type(1) {
@@ -96,10 +97,9 @@ function Dashboard() {
         </Toolbar>
         <WindowContent>
           <div>
-            Logged in as
-            <div>{profile?.name}</div>
-            <div>{profile?.email}</div>
+            Welcome, {profile?.name}
           </div>
+          <MagicBall />
         </WindowContent>
       </Window>
     </Root>
