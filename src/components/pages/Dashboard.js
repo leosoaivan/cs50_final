@@ -67,12 +67,13 @@ function Dashboard() {
               onClick={() => setOpen(!open)}
               active={open}
             >
-              Go To
+              <u>G</u>o To
             </Button>
             {open && (
               <List
                 style={{
                   position: 'absolute',
+                  left: 0,
                   top: '100%',
                   zIndex: '9999'
                 }}
@@ -90,7 +91,7 @@ function Dashboard() {
             size='sm'
             onClick={handleLogout}
           >
-            Logout
+            <u>L</u>ogout
           </Button>
         </Toolbar>
         <WindowContent>
