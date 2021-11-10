@@ -1,4 +1,13 @@
-import { getFirestore, collection, getDocs, addDoc, query, where } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+ } from "firebase/firestore";
 import app from './firebase';
 
 const db = getFirestore(app);
@@ -39,6 +48,15 @@ export const createQuestion = async (opts) => {
     question: question,
     answer: answer,
     uid: user.uid,
-    datetime: new Date(),
+    datetime: Date.now(),
   })
+}
+
+export const getAllUserEntries = async (user) => {
+  const { uid } = user
+  const questionsRef = collection(db, 'questions')
+  const q = query(questionsRef, where('uid', '==', uid), orderBy('datetime'), limit(10))
+  const querySnapshot = await getDocs(q)
+
+  return querySnapshot.docs.map(snapshot => ({...snapshot.data(), id: snapshot.id }));
 }
