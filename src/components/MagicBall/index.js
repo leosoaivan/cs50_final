@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import {
   Fieldset,
-  Panel,
   TextField,
   Divider,
 } from 'react95';

@@ -10,6 +10,7 @@ import UserContext from './context/UserContext';
 import UnauthenticatedApp from './components/pages/UnauthenticatedApp';
 import Dashboard from './components/pages/Dashboard';
 import Forum from './components/pages/Forum';
+import AuthenticatedApp from './components/pages/AuthenticatedApp';
 
 const AppRoot = styled.div`
   display: flex;
@@ -35,9 +36,11 @@ function App() {
           <Switch>
             { user ? (
               <UserContext.Provider value={user}>
-                <Route exact path="/" component={Dashboard} />
-                <Route exact path="/forum" component={Forum} />
-                <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+                <AuthenticatedApp>
+                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/forum" component={Forum} />
+                  <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+                </AuthenticatedApp>
               </UserContext.Provider>
             ) : (
               <UnauthenticatedApp />
