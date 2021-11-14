@@ -55,7 +55,7 @@ export const createQuestion = async (opts) => {
 export const getAllUserEntries = async (user) => {
   const { uid } = user
   const questionsRef = collection(db, 'questions')
-  const q = query(questionsRef, where('uid', '==', uid), orderBy('datetime'), limit(10))
+  const q = query(questionsRef, where('uid', '==', uid), orderBy('datetime', "desc"), limit(10))
   const querySnapshot = await getDocs(q)
 
   return querySnapshot.docs.map(snapshot => ({...snapshot.data(), id: snapshot.id }));

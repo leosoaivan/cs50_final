@@ -27,6 +27,10 @@ const Dropdown = styled.div`
   position: relative;
 `
 
+const Greeting = styled.div`
+  margin-bottom: 24px;
+`
+
 function Dashboard() {
   const user = useContext(UserContext)
   const [open, setOpen] = useState(false);
@@ -96,9 +100,9 @@ function Dashboard() {
           </Button>
         </Toolbar>
         <WindowContent>
-          <div>
+          <Greeting>
             Welcome, {profile?.name}
-          </div>
+          </Greeting>
           <MagicBall />
         </WindowContent>
       </Window>

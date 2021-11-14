@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import {
   Fieldset,
+  Panel,
   TextField,
+  Divider,
 } from 'react95';
 import { format } from 'date-fns-tz'
 
@@ -10,12 +12,35 @@ import UserContext from '../../context/UserContext';
 import answers from "./answers";
 import { createQuestion, getAllUserEntries } from '../../util/firebaseFirestore';
 
+const Header = styled.div`
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.25em;
+`
+
 const LengthIndicator = styled.div`
   display: flex;
   justify-content: flex-end;
   color: gray;
   font-size: 0.85em;
 `
+
+const Entry = styled.div`
+  padding: 8px;
+`
+
+const Question = styled.span`
+  font-weight: 600;
+`
+
+const EntryDate = styled.span`
+  color: gray;
+  font-size: .85em;
+`
+
+const Answer = styled.span`
+  font-style: italic;
+`;
 
 function MagicBall() {
   const [question, setQuestion] = useState('')
@@ -72,22 +97,26 @@ function MagicBall() {
       const formattedDate = format(new Date(entry.datetime), "MM/dd/yyyy")
 
       return (
-        <React.Fragment key={`entry_${entry.id}`}>
-          <div>
-            {`${entry.question} on ${formattedDate}`}
-          </div>
-          <div>
+        <Entry key={`entry_${entry.id}`}>
+          <Question>{`${entry.question}`}</Question>
+          <br />
+          <EntryDate>{`${formattedDate}`}</EntryDate>
+          <br />
+          <Answer>
             {entry.answer}
-          </div>
-        </React.Fragment>
+          </Answer>
+          <br />
+          <Divider />
+        </Entry>
       )
     })
   }
 
   return (
     <React.Fragment>
+      <Header>the truth</Header>
       <form onSubmit={handleOnSubmit}>
-        <Fieldset label="Ask">
+        <Fieldset>
           <TextField
             ref={ref}
             type="text"
@@ -101,7 +130,8 @@ function MagicBall() {
           {question.length}/100
         </LengthIndicator>
       </form>
-      <div>
+      <Header>history</Header>
+      <div style={{ width: '100%' }}>
         { entries && renderEntries() }
       </div>
     </React.Fragment>
