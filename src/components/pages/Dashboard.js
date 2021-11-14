@@ -2,11 +2,6 @@ import React, { useCallback, useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router";
 import styled from 'styled-components';
 import {
-  Button,
-  Divider,
-  List,
-  ListItem,
-  Toolbar,
   Window,
   WindowContent,
   WindowHeader,
@@ -15,6 +10,7 @@ import {
 import UserContext from '../../context/UserContext';
 import { auth } from "../../util/firebaseAuth";
 import { getUserProfile } from '../../util/firebaseFirestore';
+import CustomToolbar from '../CustomToolbar';
 import MagicBall from '../MagicBall';
 
 const Root = styled.div`
@@ -27,17 +23,12 @@ const Root = styled.div`
   }
 `
 
-const Dropdown = styled.div`
-  position: relative;
-`
-
 const Greeting = styled.div`
   margin-bottom: 24px;
 `
 
 function Dashboard() {
   const user = useContext(UserContext)
-  const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState(undefined);
   const history = useHistory();
 
@@ -68,41 +59,7 @@ function Dashboard() {
         <WindowHeader className='window-header'>
           <span>magic8ball.exe</span>
         </WindowHeader>
-        <Toolbar id="toolbar">
-          <Dropdown>
-            <Button
-              variant='menu'
-              size='sm'
-              onClick={() => setOpen(!open)}
-              active={open}
-            >
-              <u>G</u>o To
-            </Button>
-            {open && (
-              <List
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: '100%',
-                  zIndex: '9999'
-                }}
-                open={open}
-                onClick={() => setOpen(false)}
-              >
-                <ListItem size='sm'>Dashboard</ListItem>
-                <Divider />
-                <ListItem size='sm'>Forum</ListItem>
-              </List>
-            )}
-          </Dropdown>
-          <Button
-            variant='menu'
-            size='sm'
-            onClick={handleLogout}
-          >
-            <u>L</u>ogout
-          </Button>
-        </Toolbar>
+        <CustomToolbar handleLogout={handleLogout} />
         <WindowContent>
           <Greeting>
             Welcome, {profile?.name}
