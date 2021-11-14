@@ -18,6 +18,10 @@ import { getUserProfile } from '../../util/firebaseFirestore';
 import MagicBall from '../MagicBall';
 
 const Root = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
   #toolbar button:nth-of-type(1) {
     margin-right: 8px;
   }
@@ -60,7 +64,7 @@ function Dashboard() {
 
   return (
     <Root>
-      <Window>
+      <Window style={{ width: '33%', minWidth: '356px' }}>
         <WindowHeader className='window-header'>
           <span>magic8ball.exe</span>
         </WindowHeader>
