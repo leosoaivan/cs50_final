@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import GlobalStyles from './styles/globalStyles';
 import { ThemeProvider } from 'styled-components';
 import original from "react95/dist/themes/original";
-import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect,  useHistory } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./util/firebaseAuth";
 import UserContext from './context/UserContext';
 import UnauthenticatedApp from './components/pages/UnauthenticatedApp';
 import Dashboard from './components/pages/Dashboard';
+import Forum from './components/pages/Forum';
 
 const AppRoot = styled.div`
   display: flex;
@@ -35,6 +36,8 @@ function App() {
             { user ? (
               <UserContext.Provider value={user}>
                 <Route exact path="/" component={Dashboard} />
+                <Route exact path="/forum" component={Forum} />
+                <Route render={() => <Redirect to={{ pathname: "/" }} />} />
               </UserContext.Provider>
             ) : (
               <UnauthenticatedApp />
