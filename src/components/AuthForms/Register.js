@@ -11,6 +11,7 @@ import {
   signInWithGoogle,
 } from "../../util/firebaseAuth";
 import Form from '../../styles/Form';
+import Anchor from '../Anchor';
 
 const initialFormState = {
   email: '',
@@ -76,7 +77,7 @@ function Register() {
         </div>
         <div>
           Already have an account?&nbsp;
-          <Link to="/">Login now</Link>
+          <Anchor to="/">Login now</Anchor>
         </div>
       </div>
     </Form>

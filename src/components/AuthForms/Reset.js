@@ -8,6 +8,7 @@ import {
 
 import { sendPasswordReset } from "../../util/firebaseAuth";
 import Form from '../../styles/Form';
+import Anchor from '../Anchor';
 
 const initialFormState = {
   email: '',
@@ -49,7 +50,7 @@ function Reset() {
       </div>
       <div>
         Don't have an account?&nbsp;
-        <Link to="/register">Register now</Link>
+        <Anchor to="/register">Register now</Anchor>
       </div>
     </Form>
   );

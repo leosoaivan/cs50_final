@@ -8,6 +8,7 @@ import {
 
 import { signInWithEmail, signInWithGoogle } from "../../util/firebaseAuth";
 import Form from '../../styles/Form'
+import Anchor from '../Anchor';
 
 const initialFormState = {
   email: '',
@@ -61,10 +62,10 @@ function Login() {
         </Button>
       </div>
       <div>
-        <Link to="/reset">Forgot Password</Link>
+        <Anchor to="/reset">Forgot Password</Anchor>
         <div>
           Don't have an account?&nbsp;
-          <Link to="/register">Register now</Link>
+          <Anchor to="/register">Register now</Anchor>
         </div>
       </div>
     </Form>
