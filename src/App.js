@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components/macro';
 import GlobalStyles from './styles/globalStyles';
-import { ThemeProvider } from 'styled-components';
 import original from "react95/dist/themes/original";
 import { BrowserRouter as Router, Route, Switch, Redirect,  useHistory } from "react-router-dom";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./util/firebaseAuth";
 import UserContext from './context/UserContext';
@@ -11,11 +11,18 @@ import UnauthenticatedApp from './components/pages/UnauthenticatedApp';
 import Dashboard from './components/pages/Dashboard';
 import Forum from './components/pages/Forum';
 import AuthenticatedApp from './components/pages/AuthenticatedApp';
+import media from './styles/media';
 
 const AppRoot = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
+  height: 100vh;
+
+  ${media.small`
+    align-items: center;
+    flex-direction: column;
+  `}
 `
 
 function App() {
