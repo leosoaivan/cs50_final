@@ -60,3 +60,11 @@ export const getAllUserEntries = async (user) => {
 
   return querySnapshot.docs.map(snapshot => ({...snapshot.data(), id: snapshot.id }));
 }
+
+export const getForumEntries = async () => {
+  const questionsRef = collection(db, 'questions')
+  const q = query(questionsRef, orderBy('datetime', "desc"), limit(10))
+  const querySnapshot = await getDocs(q)
+
+  return querySnapshot.docs.map(snapshot => ({...snapshot.data(), id: snapshot.id }));
+}
