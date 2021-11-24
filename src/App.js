@@ -8,6 +8,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./util/firebaseAuth";
 import UserContext from './context/UserContext';
 import UnauthenticatedApp from './components/pages/UnauthenticatedApp';
+import Login from './components/authForms/Login';
+import Reset from './components/authForms/Reset';
+import Register from './components/authForms/Register';
 import Dashboard from './components/pages/Dashboard';
 import Forum from './components/pages/Forum';
 import AuthenticatedApp from './components/pages/AuthenticatedApp';
@@ -44,13 +47,21 @@ function App() {
             { user ? (
               <UserContext.Provider value={user}>
                 <AuthenticatedApp>
-                  <Route exact path="/" component={Dashboard} />
-                  <Route exact path="/forum" component={Forum} />
-                  <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+                  <Switch>
+                    <Route exact path="/" component={Dashboard} />
+                    <Route exact path="/forum" component={Forum} />
+                    <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+                  </Switch>
                 </AuthenticatedApp>
               </UserContext.Provider>
             ) : (
-              <UnauthenticatedApp />
+              <UnauthenticatedApp>
+                <Switch>
+                  <Route exact path="/" component={Login} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/reset" component={Reset} />
+                </Switch>
+              </UnauthenticatedApp>
             )}
           </Switch>
         </Router>
