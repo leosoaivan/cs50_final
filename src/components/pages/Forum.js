@@ -29,7 +29,13 @@ function Forum() {
   }, [])
 
   function renderEntries() {
-    return entries.map(entry => <Entry key={`entry_${entry.id}`} entry={entry} />)
+    return entries.map(entry => (
+      <Entry
+        key={`entry_${entry.id}`}
+        entry={entry}
+        withInitials
+      />
+    ))
   }
 
   return (
