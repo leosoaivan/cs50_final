@@ -30,18 +30,26 @@ function MagicBall() {
   const ref = useRef(null)
 
   useEffect(() => {
+    let isMounted = true;
     ref.current.focus();
 
     const fetchInitialData = async () => {
       try {
         const userEntries = await getAllUserEntries(user);
-        setEntries(userEntries)
+
+        if (isMounted) {
+          setEntries(userEntries)
+        }
       } catch (e) {
         console.error(e)
       }
     }
 
     fetchInitialData();
+
+    return () => {
+      isMounted = false;
+    }
   }, [user])
 
   function handleOnChange(e) {

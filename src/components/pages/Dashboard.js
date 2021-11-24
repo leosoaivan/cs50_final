@@ -13,10 +13,12 @@ function Dashboard() {
   const user = useContext(UserContext)
   const [profile, setProfile] = useState(undefined);
 
-  const memoizedFetchUserProfile = useCallback(async () => {
+  const memoizedFetchUserProfile = useCallback(async (isMounted) => {
     try {
       const data = await getUserProfile(user)
-      setProfile(data)
+      if (isMounted) {
+        setProfile(data)
+      }
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -24,8 +26,13 @@ function Dashboard() {
   }, [user])
 
   useEffect(() => {
+    let isMounted = true
     if (user && !profile) {
-      memoizedFetchUserProfile()
+      memoizedFetchUserProfile(isMounted)
+    }
+
+    return () => {
+      isMounted = false;
     }
   }, [user, profile, memoizedFetchUserProfile]);
 
