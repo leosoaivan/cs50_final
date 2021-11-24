@@ -3,11 +3,10 @@ import styled from 'styled-components';
 import {
   Fieldset,
   TextField,
-  Divider,
 } from 'react95';
-import { format } from 'date-fns-tz'
 
 import UserContext from '../../context/UserContext';
+import Entry from '../Entry';
 import answers from "./answers";
 import { createQuestion, getAllUserEntries } from '../../util/firebaseFirestore';
 
@@ -23,23 +22,6 @@ const LengthIndicator = styled.div`
   color: gray;
   font-size: 0.85em;
 `
-
-const Entry = styled.div`
-  padding: 8px;
-`
-
-const Question = styled.span`
-  font-weight: 600;
-`
-
-const EntryDate = styled.span`
-  color: gray;
-  font-size: .85em;
-`
-
-const Answer = styled.span`
-  font-style: italic;
-`;
 
 function MagicBall() {
   const [question, setQuestion] = useState('')
@@ -92,23 +74,7 @@ function MagicBall() {
   }
 
   function renderEntries() {
-    return entries.map((entry) => {
-      const formattedDate = format(new Date(entry.datetime), "MM/dd/yyyy")
-
-      return (
-        <Entry key={`entry_${entry.id}`}>
-          <Question>{`${entry.question}`}</Question>
-          <br />
-          <EntryDate>{`${formattedDate}`}</EntryDate>
-          <br />
-          <Answer>
-            {entry.answer}
-          </Answer>
-          <br />
-          <Divider />
-        </Entry>
-      )
-    })
+    return entries.map(entry => <Entry key={`entry_${entry.id}`} entry={entry} />)
   }
 
   return (
@@ -131,7 +97,7 @@ function MagicBall() {
       </form>
       <Header>history</Header>
       <div style={{ width: '100%' }}>
-        { entries && renderEntries() }
+        { entries.length > 0 && renderEntries() }
       </div>
     </React.Fragment>
   )
