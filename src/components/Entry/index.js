@@ -56,9 +56,7 @@ Entry.propTypes = {
     datetime: PropTypes.any,
     question: PropTypes.any,
     user: PropTypes.shape({
-      name: PropTypes.shape({
-        match: PropTypes.func
-      })
+      name: PropTypes.string,
     })
   }),
   withInitials: PropTypes.any
