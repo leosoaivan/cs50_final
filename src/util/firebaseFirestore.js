@@ -62,9 +62,24 @@ export const getAllUserEntries = async (user) => {
 }
 
 export const getForumEntries = async () => {
+  const usersRef = collection(db, 'users')
   const questionsRef = collection(db, 'questions')
   const q = query(questionsRef, orderBy('datetime', "desc"), limit(10))
-  const querySnapshot = await getDocs(q)
+  const questionQuerySnapshot = await getDocs(q)
 
-  return querySnapshot.docs.map(snapshot => ({...snapshot.data(), id: snapshot.id }));
+  const results = questionQuerySnapshot.docs.map(async (snapshot) => {
+    try {
+      const data = snapshot.data();
+      const { uid } = data;
+      const q = query(usersRef, where('uid', '==', uid))
+      const userQuerySnapshot = await getDocs(q)
+      const userData = userQuerySnapshot.docs[0]?.data();
+
+      return {...data, id: snapshot.id,  user: userData };
+    } catch (e) {
+      throw e
+    }
+  })
+
+  return Promise.all(results)
 }
