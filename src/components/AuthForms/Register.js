@@ -15,6 +15,7 @@ import Anchor from '../Anchor';
 const initialFormState = {
   email: '',
   password: '',
+  confirmPassword: '',
   name: '',
 }
 
@@ -23,9 +24,18 @@ function Register() {
 
   const register = async (event) => {
     event.preventDefault();
-    const { name, email, password } = formInputs;
-    if (!name) alert("Please enter name");
-    await createUserWithEmail(name, email, password);
+    const { name, email, password, confirmPassword } = formInputs;
+    try {
+      if (!name) {
+        throw new Error("Please enter name");
+      }
+      if (password !== confirmPassword) {
+        throw new Error ("Passwords do not match");
+      }
+      await createUserWithEmail(name, email, password);
+    } catch (e) {
+      alert(e)
+    }
   };
 
   function handleInputChange(event) {
@@ -59,6 +69,14 @@ function Register() {
             type="password"
             name="password"
             value={formInputs.password}
+            onChange={handleInputChange}
+          />
+        </Fieldset>
+        <Fieldset label="Confirm password">
+          <TextField
+            type="password"
+            name="confirmPassword"
+            value={formInputs.confirmPassword}
             onChange={handleInputChange}
           />
         </Fieldset>
