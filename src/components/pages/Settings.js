@@ -10,6 +10,9 @@ import {
   auth,
   deleteUser,
 } from '../../util/firebaseAuth';
+import {
+  deleteUserProfile,
+} from '../../util/firebaseFirestore';
 
 const Header = styled.div`
   text-transform: uppercase;
@@ -26,6 +29,7 @@ function Forum() {
 
     if (confirmation) {
       try {
+        await deleteUserProfile(user)
         await deleteUser(user)
         await auth.signOut()
         history.replace("/")

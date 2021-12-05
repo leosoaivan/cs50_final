@@ -7,6 +7,8 @@ import {
   where,
   orderBy,
   limit,
+  deleteDoc,
+  doc,
  } from "firebase/firestore";
 import app from './firebase';
 
@@ -35,6 +37,16 @@ export const getUserProfile = async (user) => {
   const querySnapshot = await getDocs(q)
 
   return querySnapshot.docs[0]?.data();
+}
+
+export const deleteUserProfile = async (user) => {
+  const userRef = collection(db, 'users')
+  const userQuery = query(userRef, where('uid', '==', user.uid))
+  const snapshots = await getDocs(userQuery)
+  const deletes = snapshots.docs.map((document) => deleteDoc(doc(db, "users", document.id)));
+
+  Promise.all(deletes)
+    .catch(console.log)
 }
 
 export const createQuestion = async (opts) => {
