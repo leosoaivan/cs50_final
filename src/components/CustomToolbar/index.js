@@ -52,6 +52,13 @@ function CustomToolbar({ handleLogout }) {
             >
               Forum
             </ListItem>
+            <Divider />
+            <ListItem
+              size='sm'
+              onClick={() => history.replace('/settings')}
+            >
+              Settings
+            </ListItem>
           </List>
         )}
       </Dropdown>

@@ -13,6 +13,7 @@ import Reset from './components/authForms/Reset';
 import Register from './components/authForms/Register';
 import Dashboard from './components/pages/Dashboard';
 import Forum from './components/pages/Forum';
+import Settings from './components/pages/Settings';
 import AuthenticatedApp from './components/pages/AuthenticatedApp';
 import media from './styles/media';
 
@@ -50,6 +51,7 @@ function App() {
                   <Switch>
                     <Route exact path="/" component={Dashboard} />
                     <Route exact path="/forum" component={Forum} />
+                    <Route exact path="/settings" component={Settings} />
                     <Route render={() => <Redirect to={{ pathname: "/" }} />} />
                   </Switch>
                 </AuthenticatedApp>

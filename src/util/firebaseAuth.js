@@ -1,4 +1,12 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  deleteUser,
+  getAuth,
+  GoogleAuthProvider,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { createUserProfile } from './firebaseFirestore';
 import app from './firebase'
 
@@ -45,6 +53,7 @@ const sendPasswordReset = async (email) => {
 
 export {
   auth,
+  deleteUser,
   signInWithGoogle,
   signInWithEmail,
   createUserWithEmail,
