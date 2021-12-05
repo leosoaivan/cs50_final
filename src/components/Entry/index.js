@@ -31,7 +31,7 @@ function Entry(props) {
   } = entry;
 
   const formattedDate = format(new Date(entry.datetime), "MM/dd/yyyy")
-  const initials = user && user.name.match(/\b\w/gm).join('');
+  const initials = user ? user.name.match(/\b\w/gm).join('') : 'Unknown'
   const entryDetails = `${formattedDate}${withInitials ? ` by ${initials}` : ''}`
 
   return (
