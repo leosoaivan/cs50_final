@@ -3,6 +3,7 @@ import {
   deleteUser,
   getAuth,
   GoogleAuthProvider,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -35,6 +36,7 @@ const signInWithEmail = async (email, password) => {
 const createUserWithEmail = async (name, email, password) => {
   try {
     const credentials = await createUserWithEmailAndPassword(auth, email, password)
+    await sendEmailVerification(auth.currentUser)
     const user = { ...credentials.user, name: name, loginType: 'email' };
 
     await createUserProfile(user)
