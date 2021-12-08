@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components/macro';
 import { useHistory } from "react-router";
 import {
   Button,
@@ -13,12 +12,7 @@ import {
 import {
   deleteUserProfile,
 } from '../../util/firebaseFirestore';
-
-const Header = styled.div`
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.25em;
-`
+import Header from '../Header'
 
 function Forum() {
   const user = useContext(UserContext);

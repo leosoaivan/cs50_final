@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
 
 import Entry from '../Entry'
+import Header from '../Header'
 import { getForumEntries } from '../../util/firebaseFirestore';
-
-const Header = styled.div`
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.25em;
-`
 
 function Forum() {
   const [ entries, setEntries ] = useState([])

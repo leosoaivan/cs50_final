@@ -7,13 +7,12 @@ import {
 
 import UserContext from '../../context/UserContext';
 import Entry from '../Entry';
+import Header from '../Header';
 import answers from "./answers";
 import { createQuestion, getAllUserEntries } from '../../util/firebaseFirestore';
 
-const Header = styled.div`
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.25em;
+const Form = styled.form`
+  margin-bottom: 24px;
 `
 
 const LengthIndicator = styled.div`
@@ -88,7 +87,7 @@ function MagicBall() {
   return (
     <React.Fragment>
       <Header>the truth</Header>
-      <form onSubmit={handleOnSubmit}>
+      <Form onSubmit={handleOnSubmit}>
         <Fieldset>
           <TextField
             ref={ref}
@@ -102,7 +101,7 @@ function MagicBall() {
         <LengthIndicator>
           {question.length}/100
         </LengthIndicator>
-      </form>
+      </Form>
       <Header>history</Header>
       <div style={{ width: '100%' }}>
         { entries.length > 0 && renderEntries() }
