@@ -36,12 +36,12 @@ function Entry(props) {
 
   return (
     <Root>
-      <Question>{`${entry.question}`}</Question>
+      <Question>{`Q: ${entry.question}`}</Question>
       <br />
       <EntryDate>{entryDetails}</EntryDate>
       <br />
       <Answer>
-        {entry.answer}
+        A: {entry.answer}
       </Answer>
       <br />
       <Divider />
