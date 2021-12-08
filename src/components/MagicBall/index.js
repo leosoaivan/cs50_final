@@ -25,6 +25,7 @@ const LengthIndicator = styled.div`
 function MagicBall() {
   const [question, setQuestion] = useState('')
   const [entries, setEntries] = useState([])
+  const [disableInput, setDisableInput] = useState(false)
   const user = useContext(UserContext)
   const ref = useRef(null)
 
@@ -48,6 +49,12 @@ function MagicBall() {
 
     return () => {
       isMounted = false;
+    }
+  }, [user])
+
+  useEffect(() => {
+    if (user && user?.providerData[0]?.providerId === 'password' && !user.emailVerified) {
+      setDisableInput(true)
     }
   }, [user])
 
@@ -96,6 +103,8 @@ function MagicBall() {
             value={question}
             onChange={handleOnChange}
             maxLength="100"
+            placeholder={disableInput ? 'Verify your email to ask a question' : ''}
+            disabled={disableInput}
           />
         </Fieldset>
         <LengthIndicator>
