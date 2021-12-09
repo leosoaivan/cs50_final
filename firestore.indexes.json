@@ -10,20 +10,6 @@
         },
         {
           "fieldPath": "datetime",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "questions",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "uid",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "datetime",
           "order": "DESCENDING"
         }
       ]
