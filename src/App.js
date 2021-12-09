@@ -21,7 +21,7 @@ const AppRoot = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 
   ${media.small`
     align-items: center;

@@ -5,6 +5,7 @@ import { Window } from 'react95';
 const Root = styled(Window)`
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 
   ${media.small`
     width: 500px;
