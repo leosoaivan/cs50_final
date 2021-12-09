@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+Magic 8 Ball
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This final project represents the culmination of CS50 and was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+The project is a mini-social network that centers around the UI-less Magic 8 Ball. It is a homage to a dingy website I used to frequent in college&mdash;the name of which I have completely forgotten&mdash;that allowed users to anonymously pose questions, to which they would received Magic 8 Ball answers. The Q/A would then be anonymously posted to a public feed for everyone's enjoyment.
 
-In the project directory, you can run:
+![](/public/README.png)
 
-### `npm start`
+## Tech
+1. [Create React App](https://github.com/facebook/create-react-app) - Create React apps with minimal configuration
+2. [React95](https://react95.io/) - UI components
+3. [styled-components](https://styled-components.com/) - UI styling
+4. [Firebase](https://firebase.google.com/) - Authentication, database, and hosting
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
+1. A user can create an account via email/password or Google. An email address can be used only once, regardless of authentication type.
+2. A password user can reset their password
+3. On their Dashboard page, a user can ask a question and receive a randomly-picked, standard Magic 8 Ball answer. This is limited to the 10 most recent entries.
+4. On the Forum page, a user can view questions and answers from all users, limited to the 10 most recent entries.
+5. On the Setting page, a user can delete their account completely. Their entries are not deleted, but their initials are removed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Potential TODO:
+- Give the users the ability to "like" a Q/A entry on the Forum Page
+- Give the users the ability to "flag" a Q/A entry on the Forum Page
+- Create an admin panel to help with moderation of Forum Page.
+- Give password users the ability to change their password.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributing
+1. Fork it
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
