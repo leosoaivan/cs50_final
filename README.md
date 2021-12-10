@@ -9,6 +9,9 @@ The project is a mini-social network that centers around the UI-less Magic 8 Bal
 ## Video demo
 https://youtu.be/0V2tGqZAJK8
 
+## Live app
+https://cs50-final-magic-8-ball.web.app/
+
 ## Tech
 1. [Create React App](https://github.com/facebook/create-react-app) - Create React apps with minimal configuration
 2. [React95](https://react95.io/) - UI components
