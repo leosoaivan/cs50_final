@@ -6,6 +6,9 @@ The project is a mini-social network that centers around the UI-less Magic 8 Bal
 
 ![](/public/README.png)
 
+## Video demo
+https://youtu.be/0V2tGqZAJK8
+
 ## Tech
 1. [Create React App](https://github.com/facebook/create-react-app) - Create React apps with minimal configuration
 2. [React95](https://react95.io/) - UI components
@@ -14,14 +17,15 @@ The project is a mini-social network that centers around the UI-less Magic 8 Bal
 
 ## Features
 1. A user can create an account via email/password or Google. An email address can be used only once, regardless of authentication type.
-2. A password user can reset their password
+2. A password user can reset their password.
 3. On their Dashboard page, a user can ask a question and receive a randomly-picked, standard Magic 8 Ball answer. This is limited to the 10 most recent entries.
 4. On the Forum page, a user can view questions and answers from all users, limited to the 10 most recent entries.
 5. On the Setting page, a user can delete their account completely. Their entries are not deleted, but their initials are removed.
 
-## Potential TODO:
-- Give the users the ability to "like" a Q/A entry on the Forum Page
-- Give the users the ability to "flag" a Q/A entry on the Forum Page
+## Potential features:
+- Give users the ability to "like" a Q/A entry on the Forum Page.
+- Give users the ability to "flag" a Q/A entry on the Forum Page.
+- Give users the ability to paginate through entries.
 - Create an admin panel to help with moderation of Forum Page.
 - Give password users the ability to change their password.
 
